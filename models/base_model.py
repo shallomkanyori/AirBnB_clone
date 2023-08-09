@@ -7,16 +7,30 @@ import uuid
 class BaseModel():
     """The base class for all other models."""
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initializes the instance.
+            Args:
+                *args: variable length positional argument list. (Ignored)
+                **kwargs: arbitary keyword arguments. (Optional)
+
             Attributes:
                 id (str): the uuid of the instance.
                 created_at (datetime): the datetime of the instance's creation.
                 updated_at (datetime): the datetime of the instance's updating.
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+
+        if kwargs:
+            for attr in kwargs.keys():
+                if attr == "__class__":
+                    continue
+                elif attr == "created_at" or attr == "updated_at":
+                    kwargs[attr] = datetime.fromisoformat(kwargs[attr])
+
+                setattr(self, attr, kwargs[attr])
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """Returns the string representation of an instance."""
