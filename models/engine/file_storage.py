@@ -3,6 +3,8 @@
 
 
 import json
+from models.base_model import BaseModel
+
 
 class FileStorage():
     """
@@ -19,13 +21,13 @@ class FileStorage():
 
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
-        
+
         class_name = obj.__class__.__name__
         self.__objects[f"{class_name}.{obj.id}"] = obj
 
     def save(self):
         """serializes __objects to the JSON file"""
-        
+
         obj_dict = {}
         for key, obj in self.__objects.items():
             obj_dict[key] = obj.to_dict()
@@ -34,7 +36,7 @@ class FileStorage():
 
     def reload(self):
         """deserializes the JSON file to __objects"""
-        
+
         try:
             with open(self.__file_path, "r") as file:
                 obj_dict = json.load(file)
