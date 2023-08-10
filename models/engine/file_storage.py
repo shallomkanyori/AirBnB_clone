@@ -4,7 +4,7 @@
 
 import json
 
-class FileStorage:
+class FileStorage():
     """
     serializes instances to a JSON file
     and deserializes JSON file to instances
@@ -39,7 +39,8 @@ class FileStorage:
             with open(self.__file_path, "r") as file:
                 obj_dict = json.load(file)
                 for key, value in obj_dict.items():
-                    class_name, obj_id = key.split(".")
-                    self.__objects[key] = global()[class_name](**value)
+                    class_name = value.get('__class__')
+                    obj = eval(class_name + '(**value)')
+                    self.__objects[key] = obj
         except FileNotFoundError:
             pass
