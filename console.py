@@ -3,14 +3,22 @@
 import cmd
 import models
 import shlex
+
+from models.amenity import Amenity
 from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for AirBnb."""
 
     prompt = "(hbnb) "
-    __classes = ["BaseModel"]
+    __classes = ["BaseModel", "User", "State", "City", "Amenity", "Place",
+                 "Review"]
     __error_msgs = ["** class name missing **", "** class doesn't exist **",
                     "** instance id missing **", "** no instance found **",
                     "** attribute name missing **", "** value missing **"]
