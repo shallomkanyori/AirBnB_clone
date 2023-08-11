@@ -2,6 +2,7 @@
 """This module defines the HBNBCommand class."""
 import cmd
 import models
+import re
 import shlex
 
 from models.amenity import Amenity
@@ -19,12 +20,69 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     __classes = ["BaseModel", "User", "State", "City", "Amenity", "Place",
                  "Review"]
+    __dot_methods = ["all", "count", "show", "destroy", "update"]
     __error_msgs = ["** class name missing **", "** class doesn't exist **",
                     "** instance id missing **", "** no instance found **",
                     "** attribute name missing **", "** value missing **"]
 
     def emptyline(self):
         pass
+
+    def args_split(self, string):
+        """Splits a string into a list of strings based on ", ".
+
+        Splits a string by comma and space but not in between double quotes
+        or braces.
+
+        Args:
+            string(str): the string to split.
+        """
+
+        res = []
+        buff = []
+        in_quotes = False
+        in_braces = 0
+
+        for char in string:
+            if char == '"':
+                in_quotes = not in_quotes
+            elif char == '{':
+                in_braces += 1
+            elif char == '}':
+                in_braces -= 1
+
+            if char in ', ' and not in_quotes and in_braces == 0:
+                if buff:
+                    res.append(''.join(buff).strip())
+                    buff = []
+            else:
+                buff.append(char)
+
+        if buff:
+            res.append(''.join(buff).strip())
+
+        return res
+
+    def precmd(self, line):
+        """Process dot method version of command."""
+
+        line = line.strip()
+
+        pattern = r'(\w+).(\w+)\((.*?)\)'
+        mtch = re.match(pattern, line)
+
+        if mtch:
+            cls_name = mtch.group(1)
+            method = mtch.group(2)
+
+            if method in self.__dot_methods:
+                args = self.args_split(mtch.group(3))
+
+                args = ' '.join(args)
+
+                line = f"{method} {cls_name} {args}"
+
+        return cmd.Cmd.precmd(self, line)
 
     def is_empty(self, string):
         """Returns true if the string is empty or only spaces.
@@ -54,6 +112,7 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, line):
         """Prints the string representation of an instance.
         show <class name> <id>
+        <class name>.show(<id>)
         """
 
         args = line.split(" ")
@@ -81,6 +140,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, line):
         """Delete an instance based on class name and id.
         destroy <class name> <id>
+        <class name>.destroy(<id>)
         """
 
         args = line.split(" ")
@@ -110,6 +170,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints the string representation of all instances based on or not on
         the class name.
         all [<class name>]
+        <class name>.all()
         """
 
         objects = models.storage.all()
@@ -129,12 +190,15 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, line):
         """Updates or adds an instance's attribute.
         update <class name> <id> <attribute name> "<attribute value>"
+        <class name>.update(<id>, <attribute name> <attribute value>)
+        <class name>.update(<id>, {<attribute name>: <attribute value>[, ...]})
         """
 
         args = shlex.split(line)
 
         cls_name = args[0] if len(args) > 0 else ""
         inst_id = args[1] if len(args) > 1 else ""
+
         attr = args[2] if len(args) > 2 else ""
         attr_val = args[3] if len(args) > 3 else ""
 
@@ -171,6 +235,23 @@ class HBNBCommand(cmd.Cmd):
 
             setattr(objects[key], attr, attr_val)
             objects[key].save()
+
+    def do_count(self, line):
+        """Print the number of instances of a class.
+        <class name>.count()
+        """
+
+        if self.is_empty(line):
+            print(self.__error_msgs[0])
+        elif line not in self.__classes:
+            print(self.__error_msgs[1])
+        else:
+            objects = models.storage.all()
+            obj_count = len([obj for obj
+                             in objects.values()
+                             if obj.__class__.__name__ == line])
+
+            print(obj_count)
 
     def do_quit(self, line):
         """Quit command to exit the program
