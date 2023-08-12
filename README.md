@@ -127,7 +127,7 @@ The console provides the following commands to manage instances of the previous 
 	(hbnb) User.update(2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4, {"age": 89, 'email': "john@mail.com"})
 	(hbnb) 
 	(hbnb) show User 2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4
-	[User] (2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4) {'id': '2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4', 'created_at': datetime.datetime(2017, 11, 2, 3, 10, 25, 903293), 'updated_at': datetime.datetime(2017, 11, 2, 3, 11, 3, 49401), 'first_name': 'John', 'last_name': 'Smith', 'age': 89}
+	[User] (2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4) {'id': '2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4', 'created_at': datetime.datetime(2017, 11, 2, 3, 10, 25, 903293), 'updated_at': datetime.datetime(2017, 11, 2, 3, 11, 3, 49401), 'first_name': 'John', 'last_name': 'Smith', 'age': 89, 'email': 'john@mail.com'}
 	(hbnb) 
 	```
 
@@ -159,6 +159,6 @@ As such, you may encounter the following errors:
 - `** no instance found **` - No instance exists for the `<id>` provided
 - `** attribute name missing **` - You have not provide an `<attribute name>` argument
 - `** value missing **` - You have not provided an `<attribute value>` argument
-- `****` - The console does not recognize the given command
+- `*** Unknown syntax: <cmd>` - The console does not recognize the given command `<cmd>`
 
 Note: Error management starts from the first argument to the last one
