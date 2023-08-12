@@ -1,6 +1,6 @@
-##AirBnB clone - The console
+## AirBnB clone - The console
 
-###Description
+### Description
 Write a command interpreter to manage your AirBnB objects.
 This is the first step towards building your first full web application: the AirBnB clone. This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration.
 
@@ -11,8 +11,8 @@ Each task is linked and will help you to:
 - create the first abstracted storage engine of the project: File storage.
 - create all unittests to validate all our classes and storage engine
 
-###The console
-####How to start it
+### The console
+#### How to start it
 You can use the console works in interactive mode:
 ```
 $ ./console.py
@@ -51,7 +51,7 @@ EOF  help  quit
 $
 ```
 
-###How to use it
+### Usage instructions
 The console operates on the following classes:
 - `BaseModel`
 - `User`
@@ -61,7 +61,7 @@ The console operates on the following classes:
 - `Place`
 - `Review`
 
-The console provides the following commands to manage instances of the previous classes (some also support dot notation):
+The console provides the following commands to manage instances of the previous classes. Dot notation is supported for the `all`, `show`, `update`, `count` and `destory` commands:
 - `create`: Creates a new instance of a class, saves it and prints the `id`.
 	- Usage: `create <class name>`
 	- Example:
@@ -128,7 +128,21 @@ The console provides the following commands to manage instances of the previous 
 	(hbnb) 
 	```
 
-####Errors
+- `count`: Displays the number of instances of a class.
+	- Usage: `<class name>.count()`
+	- Example:
+	```
+	(hbnb) User.all()
+	[User] (2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4) {'id': '2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4', 'created_at': datetime.datetime(2017, 11, 2, 3, 10, 25, 903293)    , 'updated_at': datetime.datetime(2017, 11, 2, 3, 11, 3, 49401), 'first_name': 'John', 'last_name': 'Smith', 'age': 89}
+	(hbnb) User.count()
+	1
+	(hbnb) create User
+	(hbhb) User.count()
+	2
+	(hbnb) 
+	```
+
+#### Errors
 All commands operate under the following assumptions:
 - All arguments are provided for the given command
 - Arguments are always in the right order
@@ -142,5 +156,6 @@ As such, you may encounter the following errors:
 - `** no instance found **` - No instance exists for the `<id>` provided
 - `** attribute name missing **` - You have not provide an `<attribute name>` argument
 - `** value missing **` - You have not provided an `<attribute value>` argument
+- `****` - The console does not recognize the given command
 
 Note: Error management starts from the first argument to the last one
