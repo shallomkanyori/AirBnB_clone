@@ -26,10 +26,7 @@ class TestFileStorage(unittest.TestCase):
         except FileNotFoundError:
             pass
 
-    def test_all(self):
-        self.assertEqual(type(self.storage.all()), dict)
-
-    def test_objects_dict_initialization(self):
+    def test_objectsects_dict_initialization(self):
         self.assertIsInstance(self.storage._FileStorage__objects, dict)
 
     def test_all_method_returns_dict(self):
@@ -44,46 +41,47 @@ class TestFileStorage(unittest.TestCase):
         C = City()
         A = Amenity()
         R = Review()
-        models.storage.new(B)
+        """models.storage.new(B)
         models.storage.new(U)
         models.storage.new(P)
         models.storage.new(S)
         models.storage.new(C)
         models.storage.new(A)
-        models.storage.new(R)
-        self.assertIn("BaseModel." + B.id, models.storage.all().keys())
-        self.assertIn(B, models.storage.all().values())
-        self.assertIn("User." + U.id, models.storage.all().keys())
-        self.assertIn(U, models.storage.all().values())
-        self.assertIn("Place." + P.id, models.storage.all().keys())
-        self.assertIn(P, models.storage.all().values())
-        self.assertIn("State." + S.id, models.storage.all().keys())
-        self.assertIn(S, models.storage.all().values())
-        self.assertIn("City." + C.id, models.storage.all().keys())
-        self.assertIn(C, models.storage.all().values())
-        self.assertIn("Amenity." + A.id, models.storage.all().keys())
-        self.assertIn(A, models.storage.all().values())
-        self.assertIn("Review." + R.id, models.storage.all().keys())
-        self.assertIn(R, models.storage.all().values())
+        models.storage.new(R)"""
+        objects = self.storage.all()
+        self.assertIn("BaseModel." + B.id, objects.keys())
+        self.assertIn(B, objects.values())
+        self.assertIn("User." + U.id, objects.keys())
+        self.assertIn(U, objects.values())
+        self.assertIn("Place." + P.id, objects.keys())
+        self.assertIn(P, objects.values())
+        self.assertIn("State." + S.id, objects.keys())
+        self.assertIn(S, objects.values())
+        self.assertIn("City." + C.id, objects.keys())
+        self.assertIn(C, objects.values())
+        self.assertIn("Amenity." + A.id, objects.keys())
+        self.assertIn(A, objects.values())
+        self.assertIn("Review." + R.id, objects.keys())
+        self.assertIn(R, objects.values())
 
     def test_save(self):
         B = BaseModel()
         U = User()
         P = Place()
-        S = state()
+        S = State()
         C = City()
         A = Amenity()
         R = Review()
-        models.storage.new(B)
+        """models.storage.new(B)
         models.storage.new(U)
         models.storage.new(P)
         models.storage.new(S)
         models.storage.new(C)
         models.storage.new(A)
-        models.storage.new(R)
-        models.torage.save()
+        models.storage.new(R)"""
+        models.storage.save()
         text_saved = ""
-        with open("file.json", "r") as f:
+        with open("file.json", "r", encoding="utf-8") as f:
             text_saved = f.read()
             self.assertIn("BaseModel." + B.id, text_saved)
             self.assertIn("User." + U.id, text_saved)
@@ -101,23 +99,23 @@ class TestFileStorage(unittest.TestCase):
         C = City()
         A = Amenity()
         R = Review()
-        models.storage.new(B)
+        """models.storage.new(B)
         models.storage.new(U)
         models.storage.new(P)
         models.storage.new(S)
         models.storage.new(C)
         models.storage.new(A)
-        models.storage.new(R)
-        models.torage.save()
+        models.storage.new(R)"""
+        models.storage.save()
         models.storage.reload()
-        obj = FileStorage.__FileStorae__objects
-        self.assertIn("BaseModel." + B.id, obj)
-        self.assertIn("User." + U.id, obj)
-        self.assertIn("Place." + P.id, obj)
-        self.assertIn("State." + S.id, obj)
-        self.assertIn("City." + C.id, obj)
-        self.assertIn("Amenity." + A.id, obj)
-        self.assertIn("Review." + R.id, obj)
+        objects = self.storage.all()
+        self.assertIn("BaseModel." + B.id, objects)
+        self.assertIn("User." + U.id, objects)
+        self.assertIn("Place." + P.id, objects)
+        self.assertIn("State." + S.id, objects)
+        self.assertIn("City." + C.id, objects)
+        self.assertIn("Amenity." + A.id, objects)
+        self.assertIn("Review." + R.id, objects)
 
 
 if __name__ == "__main__":

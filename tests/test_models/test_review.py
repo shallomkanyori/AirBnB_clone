@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """module documentation"""
 
-import module
+import models
 import unittest
 from models.review import Review
 

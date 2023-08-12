@@ -61,7 +61,7 @@ class TestUser(unittest.TestCase):
     def test_user_dict_representation_with_attributes(self):
         self.user.email = "test@example.com"
         self.user.password = "password"
-        self.user.first_name1 = "Mark"
+        self.user.first_name = "Mark"
         self.user.last_name = "Edward"
         user_dict = self.user.to_dict()
         self.assertEqual(user_dict['email'], "test@example.com")
@@ -73,7 +73,7 @@ class TestUser(unittest.TestCase):
         user = User(
             email="test@example.com",
             password="password",
-            first_name1="Mark",
+            first_name="Mark",
             last_name="Edward"
         )
         self.assertEqual(user.email, "test@example.com")
