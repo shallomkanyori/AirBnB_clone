@@ -194,13 +194,30 @@ class HBNBCommand(cmd.Cmd):
         <class name>.update(<id>, {<attribute name>: <attribute value>[, ...]})
         """
 
-        args = shlex.split(line)
+        args = self.args_split(line)
 
         cls_name = args[0] if len(args) > 0 else ""
         inst_id = args[1] if len(args) > 1 else ""
 
-        attr = args[2] if len(args) > 2 else ""
-        attr_val = args[3] if len(args) > 3 else ""
+        attrs = {}
+        attr_arg = args[2] if len(args) > 2 else ""
+        if attr_arg:
+            if (attr_arg[0] == '{' and attr_arg[-1] == '}' and
+                    type(eval(attr_arg)) is dict):
+                attrs = eval(attr_arg)
+            else:
+                attr_val = args[3] if len(args) > 3 else ""
+                if attr_val and attr_val[0] == attr_val[-1] == '"':
+                    attr_val = attr_val[1:-1]
+
+                try:
+                    attr_val = int(attr_val)
+                except ValueError:
+                    try:
+                        attr_val = float(attr_val)
+                    except ValueError:
+                        pass
+                attrs[attr_arg] = attr_val
 
         key = f"{cls_name}.{inst_id}"
 
@@ -218,23 +235,22 @@ class HBNBCommand(cmd.Cmd):
         elif key not in objects:
             print(self.__error_msgs[3])
 
-        elif self.is_empty(attr):
+        elif not attrs:
             print(self.__error_msgs[4])
 
-        elif self.is_empty(attr_val):
-            print(self.__error_msgs[5])
-
         else:
-            try:
-                attr_val = int(attr_val)
-            except ValueError:
-                try:
-                    attr_val = float(attr_val)
-                except ValueError:
-                    pass
+            for attr, attr_val in attrs.items():
+                if self.is_empty(attr):
+                    print(self.__error_msgs[4])
+                    break
 
-            setattr(objects[key], attr, attr_val)
-            objects[key].save()
+                elif type(attr_val) is str and self.is_empty(attr_val):
+                    print(self.__error_msgs[5])
+                    break
+
+                else:
+                    setattr(objects[key], attr, attr_val)
+                    objects[key].save()
 
     def do_count(self, line):
         """Print the number of instances of a class.
