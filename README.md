@@ -13,7 +13,7 @@ Each task is linked and will help you to:
 
 ### The console
 #### How to start it
-You can use the console works in interactive mode:
+You can use the console in interactive mode:
 ```
 $ ./console.py
 (hbnb) help
@@ -60,6 +60,8 @@ The console operates on the following classes:
 - `Amenity`
 - `Place`
 - `Review`
+
+Objects are saved into and reloaded from `file.json`
 
 The console provides the following commands to manage instances of the previous classes. Dot notation is supported for the `all`, `show`, `update`, `count` and `destory` commands:
 - `create`: Creates a new instance of a class, saves it and prints the `id`.
@@ -112,13 +114,14 @@ The console provides the following commands to manage instances of the previous 
 	- The `update` command can be used in three ways:
 		- `update <class name> <id> <attribute name> "<attribute value>"`
 		- `<class name>.update(<id>, <attribute name>, <attribute value>)`
-		- `<class name>.update(<id>, {<attribute name> <attribute value>[, ...]})`
+		- `<class name>.update(<id>, {<attribute name>: <attribute value>[, ...]})`
 	- Example:
 	```
 	(hbnb) create User
 	2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4
 	(hbnb) show User 2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4
 	[User] (2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4) {'first_name': 'Betty', 'id': '2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4', 'created_at': datetime.datetime(2017, 11, 2, 3, 10, 25, 903293), 'updated_at': datetime.datetime(2017, 11, 2, 3, 11, 3, 49401)}
+	(hbnb) 
 	(hbnb) update User 2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4 first_name "John"
 	(hbnb) User.update(2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4, last_name, "Smith")
 	(hbnb) User.update(2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4, {"age": 89, 'email': "john@mail.com"})
