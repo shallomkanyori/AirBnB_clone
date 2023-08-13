@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Unittests for console.py."""
 from console import HBNBCommand
 from io import StringIO
