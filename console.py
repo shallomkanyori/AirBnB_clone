@@ -26,6 +26,7 @@ class HBNBCommand(cmd.Cmd):
                     "** attribute name missing **", "** value missing **"]
 
     def emptyline(self):
+        """Ignores empty command lines."""
         pass
 
     def args_split(self, string):
@@ -64,7 +65,14 @@ class HBNBCommand(cmd.Cmd):
         return res
 
     def precmd(self, line):
-        """Process dot method version of command."""
+        """Process dot method version of command.
+
+        Args:
+            line: the command line to proceess.
+
+        Returns:
+            (str): The processed command line.
+        """
 
         line = line.strip()
 
@@ -82,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
 
                 line = f"{method} {cls_name} {args}"
 
-        return cmd.Cmd.precmd(self, line)
+        return line
 
     def is_empty(self, string):
         """Returns true if the string is empty or only spaces.
