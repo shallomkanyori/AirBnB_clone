@@ -17,7 +17,8 @@ from models.review import Review
 class TestFileStorage(unittest.TestCase):
     """testing file storage class"""
     def setUp(self):
-        self.storage = FileStorage()
+        models.storage._FileStorage__objects = {}
+        self.storage = models.storage
 
     def tearDown(self):
         """cleaning up"""
@@ -41,13 +42,6 @@ class TestFileStorage(unittest.TestCase):
         C = City()
         A = Amenity()
         R = Review()
-        """models.storage.new(B)
-        models.storage.new(U)
-        models.storage.new(P)
-        models.storage.new(S)
-        models.storage.new(C)
-        models.storage.new(A)
-        models.storage.new(R)"""
         objects = self.storage.all()
         self.assertIn("BaseModel." + B.id, objects.keys())
         self.assertIn(B, objects.values())
@@ -72,14 +66,8 @@ class TestFileStorage(unittest.TestCase):
         C = City()
         A = Amenity()
         R = Review()
-        """models.storage.new(B)
-        models.storage.new(U)
-        models.storage.new(P)
-        models.storage.new(S)
-        models.storage.new(C)
-        models.storage.new(A)
-        models.storage.new(R)"""
         models.storage.save()
+        self.assertTrue(os.path.exists("file.json"))
         text_saved = ""
         with open("file.json", "r", encoding="utf-8") as f:
             text_saved = f.read()
@@ -99,13 +87,6 @@ class TestFileStorage(unittest.TestCase):
         C = City()
         A = Amenity()
         R = Review()
-        """models.storage.new(B)
-        models.storage.new(U)
-        models.storage.new(P)
-        models.storage.new(S)
-        models.storage.new(C)
-        models.storage.new(A)
-        models.storage.new(R)"""
         models.storage.save()
         models.storage.reload()
         objects = self.storage.all()
