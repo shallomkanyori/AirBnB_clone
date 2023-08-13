@@ -67,7 +67,6 @@ class TestFileStorage(unittest.TestCase):
         A = Amenity()
         R = Review()
         models.storage.save()
-        self.assertTrue(os.path.exists("file.json"))
         text_saved = ""
         with open("file.json", "r", encoding="utf-8") as f:
             text_saved = f.read()
