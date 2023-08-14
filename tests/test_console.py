@@ -67,7 +67,7 @@ class TestConsole_help(TestConsoleBase):
 
         cmd = f"help {cmd}"
         res = self.get_output(cmd)
-        self.assertIsNotNone(res)
+        self.assertNotEqual(res, "")
 
     def test_help(self):
         """Tests the help command."""
@@ -82,8 +82,11 @@ class TestConsole_help(TestConsoleBase):
         self.assert_output_help("update")
 
 
-class TestConsole_quit(TestConsoleBase):
-    """Unit tests for the quit commands of the console."""
+class TestConsole_other(TestConsoleBase):
+    """Unit tests for miscellaneous commands of the console.
+
+    Unittests for the quit commands and the handling of empty lines.
+    """
 
     def test_quit(self):
         """Tests the quit command."""
@@ -114,6 +117,18 @@ class TestConsole_quit(TestConsoleBase):
             self.assertTrue(res_val)
             res = f.getvalue().strip()
             self.assertEqual(res, "")
+
+    def test_emptyline(self):
+        """Tests the handling of empty command lines."""
+
+        res = self.get_output("")
+        self.assertEqual(res, "")
+
+        res = self.get_output("     ")
+        self.assertEqual(res, "")
+
+        res = self.get_output("\t")
+        self.assertEqual(res, "")
 
 
 class TestConsole_create(TestConsoleBase):

@@ -84,9 +84,6 @@ class TestFileStorage(unittest.TestCase):
             self.assertIn("Review." + R.id, text_saved)
 
     def test_reload(self):
-        models.storage.reload()
-        self.assertDictEqual(models.storage.all(), {})
-
         B = BaseModel()
         U = User()
         P = Place()
@@ -94,9 +91,13 @@ class TestFileStorage(unittest.TestCase):
         C = City()
         A = Amenity()
         R = Review()
+
         models.storage.save()
+        models.storage._FileStorage__objects = {}
         models.storage.reload()
+
         objects = models.storage.all()
+
         self.assertIn("BaseModel." + B.id, objects)
         self.assertIn("User." + U.id, objects)
         self.assertIn("Place." + P.id, objects)

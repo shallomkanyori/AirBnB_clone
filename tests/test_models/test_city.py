@@ -21,6 +21,10 @@ class TestCity(unittest.TestCase):
         self.assertTrue(hasattr(self.city, "state_id"))
         self.assertTrue(hasattr(self.city, "name"))
 
+    def test_city_attributes_default_values(self):
+        self.assertEqual(self.city.state_id, "")
+        self.assertEqual(self.city.name, "")
+
     def test_city_dict_representation(self):
         city_dict = self.city.to_dict()
         self.assertEqual(city_dict['__class__'], 'City')
