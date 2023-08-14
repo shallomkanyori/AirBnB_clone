@@ -72,6 +72,9 @@ class TestConsole_help(TestConsoleBase):
     def test_help(self):
         """Tests the help command."""
 
+        no_arg_res = self.get_output("help")
+        self.assertNotEqual(no_arg_res, "")
+
         self.assert_output_help("help")
         self.assert_output_help("quit")
         self.assert_output_help("EOF")
