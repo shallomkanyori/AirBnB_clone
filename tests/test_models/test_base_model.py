@@ -1,14 +1,29 @@
 #!/usr/bin/python3
 """Unittests for base_model.py"""
+import os
 import time
 import uuid
 import unittest
 from datetime import datetime
+import models
 from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
     """Unittests for the BaseModel class."""
+
+    def tearDown(self):
+        """Delete any created files and clear objects dictionary."""
+
+        objects = models.storage.all()
+        keys = [k for k in objects.keys()]
+        for key in keys:
+            del objects[key]
+
+        try:
+            os.remove("file.json")
+        except FileNotFoundError:
+            pass
 
     def test_uuid(self):
         """Tests the uuid public instance attribute."""
@@ -147,6 +162,10 @@ class TestBaseModel(unittest.TestCase):
 
         self.assertIsInstance(b1.updated_at, datetime)
         self.assertGreater(b1.updated_at, updated_at)
+
+        self.assertTrue(os.path.exists("file.json"))
+        with open("file.json", encoding="utf-8") as f:
+            self.assertIn(b1.id, f.read())
 
     def test_to_dict(self):
         """Tests the to_dict method."""

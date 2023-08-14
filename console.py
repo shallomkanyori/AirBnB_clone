@@ -64,20 +64,17 @@ class HBNBCommand(cmd.Cmd):
 
         return res
 
-    def precmd(self, line):
+    def default(self, line):
         """Process dot method version of command.
 
         Args:
             line: the command line to proceess.
-
-        Returns:
-            (str): The processed command line.
         """
 
-        line = line.strip()
+        p_line = line.strip()
 
         pattern = r'(\w+).(\w+)\((.*?)\)'
-        mtch = re.match(pattern, line)
+        mtch = re.match(pattern, p_line)
 
         if mtch:
             cls_name = mtch.group(1)
@@ -90,7 +87,9 @@ class HBNBCommand(cmd.Cmd):
 
                 line = f"{method} {cls_name} {args}"
 
-        return line
+                return self.onecmd(line)
+
+        return super().default(line)
 
     def is_empty(self, string):
         """Returns true if the string is empty or only spaces.

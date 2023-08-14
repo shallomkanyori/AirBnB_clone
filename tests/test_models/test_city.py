@@ -1,14 +1,11 @@
 #!/usr/bin/python3
 """Unittest for the subclass User"""
-import os
 import models
 import unittest
-from datetime import datetime
-from time import sleep
 from models.city import City
 
 
-class Test_City(unittest.TestCase):
+class TestCity(unittest.TestCase):
     """unnitests for city class"""
 
     def setUp(self):

@@ -16,22 +16,27 @@ from models.review import Review
 
 class TestFileStorage(unittest.TestCase):
     """testing file storage class"""
-    def setUp(self):
-        models.storage._FileStorage__objects = {}
-        self.storage = models.storage
 
     def tearDown(self):
         """cleaning up"""
+
+        objects = models.storage.all()
+        keys = [k for k in objects.keys()]
+
+        for key in keys:
+            del objects[key]
+
         try:
             os.remove("file.json")
         except FileNotFoundError:
             pass
 
     def test_objectsects_dict_initialization(self):
-        self.assertIsInstance(self.storage._FileStorage__objects, dict)
+        self.assertIsInstance(models.storage._FileStorage__objects, dict)
+        self.assertDictEqual(models.storage._FileStorage__objects, {})
 
     def test_all_method_returns_dict(self):
-        result = self.storage.all()
+        result = models.storage.all()
         self.assertIsInstance(result, dict)
 
     def test_new(self):
@@ -42,7 +47,7 @@ class TestFileStorage(unittest.TestCase):
         C = City()
         A = Amenity()
         R = Review()
-        objects = self.storage.all()
+        objects = models.storage.all()
         self.assertIn("BaseModel." + B.id, objects.keys())
         self.assertIn(B, objects.values())
         self.assertIn("User." + U.id, objects.keys())
@@ -79,6 +84,9 @@ class TestFileStorage(unittest.TestCase):
             self.assertIn("Review." + R.id, text_saved)
 
     def test_reload(self):
+        models.storage.reload()
+        self.assertDictEqual(models.storage.all(), {})
+
         B = BaseModel()
         U = User()
         P = Place()
@@ -88,7 +96,7 @@ class TestFileStorage(unittest.TestCase):
         R = Review()
         models.storage.save()
         models.storage.reload()
-        objects = self.storage.all()
+        objects = models.storage.all()
         self.assertIn("BaseModel." + B.id, objects)
         self.assertIn("User." + U.id, objects)
         self.assertIn("Place." + P.id, objects)
