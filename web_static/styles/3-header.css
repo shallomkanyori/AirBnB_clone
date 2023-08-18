@@ -1,5 +1,5 @@
 header {
-	color: white;
+	background: white;
 	height: 70px;
 	width: 100%;
 	position: relative;
@@ -7,8 +7,11 @@ header {
 }
 
 .logo {
+	width: 142px;
+	height: 60px;
 	position: absolute;
 	left: 20px;
-	top: 50%;
-	background-image: url("images/logo.png")
+	top: 5px;
+	background-image: url("../images/logo.png");
+	background-repeat: no-repeat;
 }
