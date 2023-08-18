@@ -9,7 +9,14 @@ body {
 	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
 .container {
+	flex: 1;
 	max-width: 1000px;
 	margin: 30px auto;
 }
