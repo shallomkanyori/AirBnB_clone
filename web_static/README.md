@@ -84,3 +84,20 @@ Layout: (based on [4-index.html](4-index.html)
 		- font weight: 400
 		- font size: 14px
 		- text with fake contents
+
+#### Task 6: It's (h)over
+[6-index.html](6-index.html) is a HTML page that displays a header, footer and a filters box with dropdown.
+Layout: (based on [5-index.html](5-index.html))
+- Update Locations and Amenities filters to display a contextual dropdown when the mouse is on the filter `div`:
+	- tag `ul`
+	- classname `popover`
+	- text should be fake now
+	- inside each `div`
+	- not displayed by default
+	- color #FAFAFA
+	- width same as the `div` filter
+	- border #DDDDDD 1px with border radius 4px
+	- no list display
+	- Location filter has 2 levels of `ul`/`li`:
+		- state -> cities
+		- state name must be display in a `h2` tag (font size 16px)
