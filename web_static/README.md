@@ -37,13 +37,13 @@ Layout:
 #### Task 4: Search!
 [4-index.html](4-index.html) is a HTML page that displays a header, footer and a filters box with a search button.
 Layout: (based on [3-index.html](3-index.html))
-- Container:
+- Container (styled in [styles/4-common.css](styles/4-common.css)):
 	- A `div` between `header` and `footer` tags:
 		- class: `container`
 		- max width 1000px
 		- margin top and bottom 30px
 		- center horizontally
-- Filter section:
+- Filter section (styled in [styles/4-filters.css](styles/4-filters.css)):
 	- tag `section`
 	- class: `filters`
 	- inside the `.container`
@@ -64,3 +64,23 @@ Layout: (based on [3-index.html](3-index.html))
 	- border radius 4px
 	- center vertically at 30px of the right border
 	- change opacity to 90% when the mouse is over the button
+
+#### Task 5: More filters
+[5-index.html](5-index.html) is a HTML page that displays a header, footer and a filters box.
+Layout: (based on [4-index.html](4-index.html)
+- Locations and Amenities filters (styled in [styles/5-filters.css](styles/5-filters.css)):
+	- tag: `div`
+	- classname: `locations` for location tag and `amenities` for the other
+	- inside the section `filters` (same level as the `button` Search)
+	- height: 100% of the section filters
+	- width: 25% of the section filters
+	- border right #DDDDDD 1px only for the first left filter
+	- contains a title:
+		- tag: `h3`
+		- font weight: 600
+		- text `States` or `Amenities`
+	- contains a subtitle:
+		- tag: `h4`
+		- font weight: 400
+		- font size: 14px
+		- text with fake contents
