@@ -1,4 +1,5 @@
 .filters {
+	display: block;
 	height: 70px;
 	width: 100%;
 	position: relative;
@@ -9,13 +10,14 @@
 
 .locations,
 .amenities {
-	display: inline-flex;
-	flex-direction: column;
-	justify-content: center;
+	display: inline;
+	vertical-align: middle;
+	float: left;
+
 	height: 100%;
 	width: 25%;
-	margin-left: 30px;
-	padding-right: 30px;
+
+	line-height: 20px;
 }
 
 .locations {
@@ -25,28 +27,35 @@
 .locations h3,
 .amenities h3 {
 	font-weight: 600;
-	margin: 0;
-	padding: 0;
+
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-left: 30px;
 }
 
 .locations h4,
 .amenities h4 {
 	font-weight: 400;
 	font-size: 14px;
-	margin: 0;
-	padding: 0;
+
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-left: 30px;
 }
 
 
 .filters button {
 	width: 20%;
 	height: 48px;
+
 	position: absolute;
 	right: 30px;
 	top: 11px;
+
 	background: #FF5A5F;
 	color: #FFFFFF;
 	font-size: 18px;
+
 	border: none;
 	border-radius: 4px;
 }
@@ -60,18 +69,39 @@
 	display: none;
 	background: #FAFAFA;
 	width: 100%;
+
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
+
+	list-style: none;
+	padding: 25px 0;
 }
 
-.popover:hover {
+.locations:hover .popover,
+.amenities:hover .popover {
 	display: inline-block;
 }
 
 .popover h2 {
 	font-size: 16px;
+
+	padding-left: 10px;
+	margin: 0;
 }
 
-.popover ul {
+.sublist {
+	padding-left: 0;
+}
+
+.sublist li {
+	padding-left: 30px;
+}
+
+ul {
 	list-style: none;
+	padding-bottom: 20px;
+}
+
+li {
+	padding-left: 30px;
 }
