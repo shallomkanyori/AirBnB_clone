@@ -33,3 +33,34 @@ Layout:
 	- border top 1px #CCCCCC
 	- text `Best School` center vertically and horizontally
 	- always at the bottom at the page
+
+#### Task 4: Search!
+[4-index.html](4-index.html) is a HTML page that displays a header, footer and a filters box with a search button.
+Layout: (based on [3-index.html](3-index.html))
+- Container:
+	- A `div` between `header` and `footer` tags:
+		- class: `container`
+		- max width 1000px
+		- margin top and bottom 30px
+		- center horizontally
+- Filter section:
+	- tag `section`
+	- class: `filters`
+	- inside the `.container`
+	- color white
+	- height 70px
+	- width 100% of `container`
+	- border 1px #DDDDDD with radius 4px
+- Button search:
+	- tag `button`
+	- text `Search`
+	- font size: 18px
+	- inside `.filters`
+	- background color #FF5A5F
+	- text color #FFFFFF
+	- height 48px
+	- width 20% of `.filters`
+	- no borders
+	- border radius 4px
+	- center vertically at 30px of the right border
+	- change opacity to 90% when the mouse is over the button
