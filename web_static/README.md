@@ -123,3 +123,50 @@ Layout: (based on [6-index.html](6-index.html))
 			- tag: `h2`
 			- font size: 30px
 			- center horizontally
+
+#### Task 8: More details
+[8-index.html](8-index.html) is a HTML page that displays a header, a footer, a filter box (dropdown list) and the result of the search.
+Layout: (based on [7-index.html](7-index.html))
+Add more information to a Place `article`:
+- Price by night:
+	- tag: `div`
+	- classname: `price_by_night`
+	- same level as the place name
+	- font color: #FF5A5F
+	- border: #FF5A5F 4px rounded
+	- min width: 60px
+	- height: 60px
+	- font size: 30px
+	- align: the top right (with space)
+- Information section:
+	- tag: `div`
+	- classname: `information`
+	- height: 80px
+	- border: top and bottom #DDDDDD 1px
+	- contains (align vertically):
+		- Number of guests:
+			- tag: `div`
+			- classname: `max_guest`
+			- width: 100px
+			- fake text
+			- [icon](images/icon_guest.png)
+		- Number of bedrooms:
+			- tag: `div`
+			- classname: `number_rooms`
+			- width: 100px
+			- fake text
+			- [icon](images.icon_bed.png)
+		- Number of bathrooms:
+			- tag: `div`
+			- classname: `number_bathrooms`
+			- width: 100px
+			- fake text
+			- [icon](images/icon_bath.png)
+- User section:
+	- tag: `div`
+	- classname: `user`
+	- text `Owner: <fake text>`
+	- `Owner` text should be in bold
+- Description section:
+	- tag: `div`
+	- classname: `description`
