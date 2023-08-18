@@ -9,7 +9,7 @@
 }
 
 .locations,
-.amenities {
+.popover_amenities {
 	display: inline-flex;
 	flex-direction: column;
 	justify-content: center;
@@ -25,7 +25,7 @@
 }
 
 .locations h3,
-.amenities h3 {
+.popover_amenities h3 {
 	font-weight: 600;
 
 	margin: 0;
@@ -34,7 +34,7 @@
 }
 
 .locations h4,
-.amenities h4 {
+.popover_amenities h4 {
 	font-weight: 400;
 	font-size: 14px;
 
@@ -82,7 +82,7 @@
 }
 
 .locations:hover .popover,
-.amenities:hover .popover {
+.popover_amenities:hover .popover {
 	display: inline-block;
 }
 
