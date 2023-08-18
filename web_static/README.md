@@ -170,3 +170,39 @@ Add more information to a Place `article`:
 - Description section:
 	- tag: `div`
 	- classname: `description`
+
+
+#### Task 9: Full details
+[10-index.html](100-index.html) is a HTML page that displays a header, footer, a filters box with dropdown and results.
+Layout: (based on [8-index.html](8-index.html))
+Add more information to a Place article:
+- List of Amenities:
+	- tag `div`
+	- classname `amenities`
+	- margin top 40px
+	- contains:
+		- title:
+			- tag `h2`
+			- text `Amenities`
+			- font size 16px
+			- border bottom #DDDDDD 1px
+		- list of amenities:
+			- tag `ul` / `li`
+			- no list style
+			- icons on the left: [Pet friendly](images/icon_pets.png), [TV](images/icon_tv.png), [Wifi](images/icon_wifi.png), etc
+- List of Reviews:
+	- tag `div`
+	- classname `reviews`
+	- margin top 40px
+	- contains:
+		- title:
+			- tag `h2`
+			- text `Reviews`
+			- font size 16px
+			- border bottom #DDDDDD 1px
+		- list of review:
+			- tag `ul` / `li`
+			- no list style
+			- a review is described by:
+				- `h3` tag for the user/date description (font size 14px).
+				- `p` tag for the text (font size 12px)
