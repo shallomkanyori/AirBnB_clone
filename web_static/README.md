@@ -101,3 +101,25 @@ Layout: (based on [5-index.html](5-index.html))
 	- Location filter has 2 levels of `ul`/`li`:
 		- state -> cities
 		- state name must be display in a `h2` tag (font size 16px)
+
+#### Task 7: Display results
+[7-index.html](7-index.html) is a HTML page that displays a header, footer, a filters box with dropdown and results.
+Layout: (based on [6-index.html](6-index.html))
+- Add Places section:
+	- tag: `section`
+	- classname: `places`
+	- same level as the filters section, inside `.container`
+	- contains a title:
+		- tag: `h1`
+		- text: `Places`
+		- align in the top left
+		- font size: 30px
+	- contains multiple “Places” as listing (horizontal or vertical) describe by:
+		- tag: `article`
+		- width: 390px
+		- padding and margin 20px
+		- border #FF5A5F 1px with radius 4px
+		- contains the place name:
+			- tag: `h2`
+			- font size: 30px
+			- center horizontally
