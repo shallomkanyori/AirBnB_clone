@@ -1,7 +1,10 @@
-.places h1 {
+.places .grid {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-around;
+}
+
+.places h1 {
 	font-size: 30px;
 }
 
