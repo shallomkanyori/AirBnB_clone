@@ -207,5 +207,10 @@ Add more information to a Place article:
 				- `h3` tag for the user/date description (font size 14px).
 				- `p` tag for the text (font size 12px)
 
-#### Tas 10: Flex
+#### Task 10: Flex
 [101-index.html](101-index.html) is a HTML page that improves the Places section by using Flexible boxes for all Place articles (stylesheet: [styles/101-places.css](styles/101-paces.css)).
+
+#### Task 11: Responsive design
+Improves the page by adding resposive design to display correctly in mobile or small screens.
+- no horizontal scrolling
+- redesign search bar depending on the width
