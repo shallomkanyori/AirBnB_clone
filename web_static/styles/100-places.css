@@ -22,6 +22,8 @@
 .places h2 {
 	font-size: 30px;
 	text-align: center;
+	margin: 0;
+	margin-bottom: 50px;
 }
 
 .price_by_night {
