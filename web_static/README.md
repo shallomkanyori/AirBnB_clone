@@ -206,3 +206,6 @@ Add more information to a Place article:
 			- a review is described by:
 				- `h3` tag for the user/date description (font size 14px).
 				- `p` tag for the text (font size 12px)
+
+#### Tas 10: Flex
+[101-index.html](101-index.html) is a HTML page that improves the Places section by using Flexible boxes for all Place articles (stylesheet: [styles/101-places.css](styles/101-paces.css)).
